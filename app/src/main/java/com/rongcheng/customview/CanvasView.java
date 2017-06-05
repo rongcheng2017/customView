@@ -6,9 +6,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -39,16 +39,21 @@ public class CanvasView extends View {
         mPaint.setStrokeWidth(10f);//设置画笔宽度为10px
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onDraw(Canvas canvas) {
         //        canvas.drawColor(Color.BLUE);//画布颜色
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-//        canvas.drawBitmap(bitmap, 0, 0, mPaint);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.raw);
+//        bitmap.setConfig(Bitmap.Config.ARGB_8888);
+//        bitmap.setHeight(1600);
+//        bitmap.setWidth(1200);
+        canvas.drawBitmap(bitmap, 0, 0, mPaint);
+
 
 //        canvas.drawPoint(200, 200, mPaint);//在坐标(200,200)位置绘制一个点
 //        canvas.drawPoints(new float[]{500, 500, 500, 600, 500, 700}, mPaint);//绘制一组点，坐标位置由float数组指定
-
-//        canvas.drawLine(300, 300, 500, 600, mPaint);// 在坐标(300,300)(500,600)之间绘制一条直线
+        mPaint.setColor(Color.RED);
+        canvas.drawLine(300, 300, 500, 600, mPaint);// 在坐标(300,300)(500,600)之间绘制一条直线
 //        canvas.drawLines(new float[]{               // 绘制一组线 每四数字(两个点的坐标)确定一条线
 //                100, 200, 200, 200,
 //                100, 300, 200, 300

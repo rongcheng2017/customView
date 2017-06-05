@@ -1,0 +1,52 @@
+{
+  "marker": [
+    {
+      "ox": 500,
+      "oy": 838,
+      "width": 33,
+      "height": 36,
+      "markIcon": "https://thumbnail0.baidupcs.com/thumbnail/494048102cb6556521a3756d5b0b7f03?fid=3761462008-250528-275523700691250&time=1496304000&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-o%2Fb5Tlrh3aEmaCJQVD3jPphOSzg%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=3517701458721070375&dp-callid=0&size=c710_u400&quality=100",
+      "lines": [
+        {
+          "x0": 383,
+          "y0": 870,
+          "x1": 507,
+          "y1": 870
+        }
+      ]
+    },
+    {
+      "ox": 476,
+      "oy": 1046,
+      "width": 33,
+      "height": 36,
+      "markIcon": "https://thumbnail0.baidupcs.com/thumbnail/1802b120a15b14448b3eabc22ab1b5f5?fid=3761462008-250528-494273695611000&time=1496304000&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-usS0ZO10cNqX8zXsHWaNlFR8R%2Fc%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=3517691555161954808&dp-callid=0&size=c710_u400&quality=100",
+      "lines": [
+        {
+          "x0": 172,
+          "y0": 1077,
+          "x1": 488,
+          "y1": 1077
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "x0": 714,
+          "y0": 1414,
+          "x1": 1020,
+          "y1": 1414
+        },
+        {
+          "x0": 623,
+          "y0": 1445,
+          "x1": 806,
+          "y1": 1445
+        }
+      ]
+    }
+  ],
+  "picWidth": 1200,
+  "picHeight": 1600
+}
