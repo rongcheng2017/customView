@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rongcheng.customview.activity.MainActivity">
+    tools:context="com.rongcheng.customview.activity.RadarActivity">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list"
+    <com.rongcheng.customview.customView.RadarView
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.rongcheng.customview;
+package com.rongcheng.customview.customView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +11,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.rongcheng.customview.R;
 
 /**
  * @author frc
