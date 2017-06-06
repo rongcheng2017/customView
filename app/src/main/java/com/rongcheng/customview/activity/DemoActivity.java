@@ -79,10 +79,18 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.tv_show_mark:
-                mTestView.showMarks();
+                if(mTestView.isMarksShow) {
+                    mTestView.dismissMarks();
+                }else {
+                    mTestView.showMarks();
+                }
                 break;
             case R.id.tv_show_text:
-                mTestView.showLinkText();
+                if(mTestView.isLinkTextsShow) {
+                    mTestView.dismissLinkText();
+                }else {
+                    mTestView.showLinkText();
+                }
                 break;
 
         }

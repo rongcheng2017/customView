@@ -25,6 +25,7 @@ import com.rongcheng.customview.photoView.PhotoView;
 
 public class TestView extends PhotoView {
     private Paint mPaint = new Paint();
+    Bitmap bitmap;
 
     public TestView(Context context) {
         this(context, null);
@@ -37,8 +38,15 @@ public class TestView extends PhotoView {
     public TestView(Context context, AttributeSet attr, int defStyle) {
         super(context, attr, defStyle);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getBitmap();
             initPaint();
         }
+
+    }
+
+    private void getBitmap() {
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.raw);
+        tmpBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
     }
 
     Canvas tmpCanvas;
@@ -46,48 +54,25 @@ public class TestView extends PhotoView {
     public boolean isFristLineShow = false;
     public boolean isSecondLineShow = false;
     public boolean isThridLineShow = false;
+    public boolean isMarksShow = false;
+    public boolean isLinkTextsShow = false;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void initPaint() {
         mPaint.setColor(Color.RED);//设置画笔颜色
         mPaint.setStyle(Paint.Style.FILL);//设置画笔模式为填充
         mPaint.setStrokeWidth(10f);//设置画笔宽度为10px
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.raw);
-        tmpBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+
         tmpCanvas = new Canvas(tmpBitmap);
 
         tmpCanvas.drawBitmap(bitmap, 0, 0, null);
-//        tmpCanvas.drawLine(dip2px(383), dip2px(870), dip2px(507), dip2px(870), mPaint);// 在坐标(300,300)(500,600)之间绘制一条直线
-//        drawLine(tmpCanvas, 172, 1077, 488, 1077, mPaint);
-//        drawLine(tmpCanvas, 714, 1414, 1020, 1414, mPaint);
-//        drawLine(tmpCanvas, 623, 1445, 806, 1445, mPaint);
-
-//        tmpCanvas.drawBitmap(getNewMarkIcon(R.drawable.mark_small), dip2px(500 - 16), dip2px(838 - 18), null);
-//        tmpCanvas.drawBitmap(getNewMarkIcon(R.drawable.mark_big), dip2px(476 - 16), dip2px(1046 - 18), null);
-//
-//        mPaint.setColor(Color.BLUE);
-//        Rect rect = new Rect();
-//        tmpCanvas.drawRect(dip2px(500 - 20), dip2px(838 + 18), dip2px(630), dip2px(838 + 50), mPaint);
-//
-//
-//        mPaint.setColor(Color.RED);
-//        mPaint.setTextSize(dip2px(18));
-//        mPaint.setStrokeWidth(20f);//设置画笔宽度为10px
-//        tmpCanvas.drawText("hello world!", dip2px(500), dip2px(838 + 36), mPaint);
-//
-
-//        tmpCanvas.save(Canvas.ALL_SAVE_FLAG);
-//        tmpCanvas.restore();
-//        setImageDrawable(new BitmapDrawable(getResources(), tmpBitmap));
     }
 
     void drawLine(Canvas canvas, float x0, float y0, float x1, float y1, Paint p) {
         canvas.drawLine(dip2px(x0), dip2px(y0), dip2px(x1), dip2px(y1), p);
     }
 
-    public void Restore() {
-
-    }
 
     public int dip2px(float dipValue) {
         final float scale = getResources().getDisplayMetrics().density;
@@ -119,29 +104,6 @@ public class TestView extends PhotoView {
         return iconBig;
     }
 
-
-    public void dismissLineAndText() {
-        mPaint.setColor(Color.RED);//设置画笔颜色
-        mPaint.setStyle(Paint.Style.FILL);//设置画笔模式为填充
-        mPaint.setStrokeWidth(10f);//设置画笔宽度为10px
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.raw);
-        Bitmap tmpBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas tmpCanvas = new Canvas(tmpBitmap);
-
-        tmpCanvas.drawBitmap(bitmap, 0, 0, null);
-        tmpCanvas.drawLine(dip2px(383), dip2px(870), dip2px(507), dip2px(870), mPaint);// 在坐标(300,300)(500,600)之间绘制一条直线
-        drawLine(tmpCanvas, 172, 1077, 488, 1077, mPaint);
-        drawLine(tmpCanvas, 714, 1414, 1020, 1414, mPaint);
-        drawLine(tmpCanvas, 623, 1445, 806, 1445, mPaint);
-
-        tmpCanvas.drawBitmap(getNewMarkIcon(R.drawable.mark_small), dip2px(500 - 16), dip2px(838 - 18), null);
-        tmpCanvas.drawBitmap(getNewMarkIcon(R.drawable.mark_big), dip2px(476 - 16), dip2px(1046 - 18), null);
-
-        tmpCanvas.save(Canvas.ALL_SAVE_FLAG);
-        tmpCanvas.restore();
-        setImageDrawable(new BitmapDrawable(getResources(), tmpBitmap));
-        invalidate();
-    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -220,6 +182,7 @@ public class TestView extends PhotoView {
     public void showMarks() {
         tmpCanvas.drawBitmap(getNewMarkIcon(R.drawable.mark_small), dip2px(500 - 16), dip2px(838 - 18), null);
         tmpCanvas.drawBitmap(getNewMarkIcon(R.drawable.mark_big), dip2px(476 - 16), dip2px(1046 - 18), null);
+        isMarksShow = true;
         postInvalidate();
     }
 
@@ -227,14 +190,50 @@ public class TestView extends PhotoView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             initPaint();
         }
+        if (isFristLineShow) {
+            showFirstLine();
+        }
+        if (isSecondLineShow) {
+            showSecondLine();
+        }
+        if (isThridLineShow) {
+            showThirdLine();
+        }
+        isMarksShow = false;
         postInvalidate();
     }
 
     public void showLinkText() {
+        mPaint.setColor(Color.BLUE);
+        Rect rect = new Rect();
+        tmpCanvas.drawRect(dip2px(500 - 20), dip2px(838 + 18), dip2px(630), dip2px(838 + 50), mPaint);
+
         mPaint.setColor(Color.RED);
         mPaint.setTextSize(dip2px(18));
         mPaint.setStrokeWidth(20f);//设置画笔宽度为10px
         tmpCanvas.drawText("hello world!", dip2px(500), dip2px(838 + 36), mPaint);
+        isLinkTextsShow = true;
+        postInvalidate();
+
+    }
+
+    public void dismissLinkText() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            initPaint();
+        }
+        if (isFristLineShow) {
+            showFirstLine();
+        }
+        if (isSecondLineShow) {
+            showSecondLine();
+        }
+        if (isThridLineShow) {
+            showThirdLine();
+        }
+        if (isMarksShow) {
+            showMarks();
+        }
+        isLinkTextsShow = false;
         postInvalidate();
 
     }
