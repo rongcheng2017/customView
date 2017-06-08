@@ -19,7 +19,10 @@ public class MainActivity extends AppCompatActivity {
             "Demo Show",
             "Pie Demo",
             "Path Demo",
-            "蜘蛛雷达"
+            "蜘蛛雷达",
+            "贝赛尔曲线",
+            "搜索",
+            "事件传递"
     };
 
     @Override
@@ -56,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
                         case 3:
                             clazz = RadarActivity.class;
                             break;
+                        case 4:
+                            clazz = BeiSaiActivity.class;
+                            break;
+                        case 5:
+                            clazz = SearchActivity.class;
+                            break;
+                        case 6:
+                            clazz = TouchDispatchActivity.class;
+                            break;
+
                     }
                     Context context = holder.itemView.getContext();
                     context.startActivity(new Intent(context, clazz));

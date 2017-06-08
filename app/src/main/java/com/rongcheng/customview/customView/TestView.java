@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
@@ -180,6 +181,7 @@ public class TestView extends PhotoView {
     }
 
     public void showMarks() {
+
         tmpCanvas.drawBitmap(getNewMarkIcon(R.drawable.mark_small), dip2px(500 - 16), dip2px(838 - 18), null);
         tmpCanvas.drawBitmap(getNewMarkIcon(R.drawable.mark_big), dip2px(476 - 16), dip2px(1046 - 18), null);
         isMarksShow = true;
